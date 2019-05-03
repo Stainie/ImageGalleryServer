@@ -1,9 +1,9 @@
-const Product = require("../models/productsModel");
+const Image = require("../models/imageModel");
 const errorHandlers = require("../utils/errorHandlers");
 
-exports.getAllProducts = async (req, res, next) => {
+exports.getAllImages = async (req, res, next) => {
   try {
-    const products = await Product.find({ creatorId: req.userId });
+    const products = await Image.find({ creatorId: req.userId });
     res.status(200).json({
       sucess: true,
       message: "Success",
@@ -14,10 +14,10 @@ exports.getAllProducts = async (req, res, next) => {
   }
 };
 
-exports.getSingleProduct = async (req, res, next) => {
+exports.getSingleImage = async (req, res, next) => {
   const { productId } = req.params;
   try {
-    const product = await Product.findOne({
+    const product = await Image.findOne({
       _id: productId,
       creatorId: req.userId
     });
@@ -35,10 +35,10 @@ exports.getSingleProduct = async (req, res, next) => {
   }
 };
 
-exports.updateProduct = async (req, res, next) => {
+exports.updateImage = async (req, res, next) => {
   const { _id, title, price, description, image_url } = req.body;
   try {
-    const product = await Product.findOne({ _id: _id, creatorId: req.userId });
+    const product = await Image.findOne({ _id: _id, creatorId: req.userId });
 
     if (!product) {
       errorHandlers.mainErrorHandler("Not Authorized", 401);
@@ -59,11 +59,11 @@ exports.updateProduct = async (req, res, next) => {
   }
 };
 
-exports.postProduct = async (req, res, next) => {
+exports.postImage = async (req, res, next) => {
   const { title, price, description, image_url } = req.body;
 
   try {
-    const product = new Product({
+    const product = new Image({
       title,
       price,
       description,
@@ -82,10 +82,10 @@ exports.postProduct = async (req, res, next) => {
   }
 };
 
-exports.deleteProduct = async (req, res, next) => {
+exports.deleteImage = async (req, res, next) => {
   const { productId } = req.params;
   try {
-    const product = await Product.findOneAndRemove({
+    const product = await Image.findOneAndRemove({
       _id: productId,
       creatorId: req.userId
     });

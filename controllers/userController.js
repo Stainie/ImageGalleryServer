@@ -17,7 +17,6 @@ exports.loginUser = async (req, res, next) => {
     const passwordsMatch = await bcrypt.compare(password, user.password);
     if (!passwordsMatch) {
       throw new Error("Invalid email or password");
-      return;
     } else {
       let returnUser = user._doc;
       delete returnUser.password;
@@ -48,11 +47,9 @@ exports.createUser = (req, res, next) => {
       return bcrypt.hash(password, 12);
     })
     .then(hashedPassword => {
-      const { email, first_name, last_name, username } = req.body;
+      const { email, username } = req.body;
       const user = new User({
         email,
-        first_name,
-        last_name,
         username,
         password: hashedPassword
       });
@@ -88,16 +85,6 @@ exports.validateUser = method => {
               return true;
             });
           }),
-        body("first_name", "Invalid first name")
-          .not()
-          .isEmpty()
-          .exists()
-          .isString(),
-        body("last_name", "Invalid last name")
-          .not()
-          .isEmpty()
-          .exists()
-          .isString(),
         body("username", "Invalid username")
           .not()
           .isEmpty()
