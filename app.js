@@ -1,5 +1,6 @@
 const express = require("express");
 const app = express();
+const http = require('http');
 const fs = require("fs");
 const dotenv = require("dotenv").config();
 const bodyParser = require("body-parser");
@@ -35,3 +36,9 @@ dbConnect()
     });
   })
   .catch(err => console.log(err));
+
+
+setInterval(() => {
+  http.get("https://flutter-image-gallery.herokuapp.com/");
+  console.log("keep alive");
+}, 350000);
