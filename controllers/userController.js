@@ -4,7 +4,7 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const {
   validationErrorHandler,
-  errorHandler
+  mainErrorHandler
 } = require("../utils/errorHandlers");
 
 exports.loginUser = async (req, res, next) => {
@@ -12,7 +12,7 @@ exports.loginUser = async (req, res, next) => {
     const { email, password } = req.body;
     const user = await User.findOne({ email: email });
     if (!user) {
-      errorHandler.mainErrorHandler("Email doesn't exist", 404);
+      mainErrorHandler("Email doesn't exist", 404);
     }
     const passwordsMatch = await bcrypt.compare(password, user.password);
     if (!passwordsMatch) {
