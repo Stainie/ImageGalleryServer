@@ -1,1 +1,4 @@
 ::1 - - [03/May/2019:14:28:19 +0000] "POST /api/login/ HTTP/1.1" 404 62 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.131 Safari/537.36"
+::1 - - [03/May/2019:19:11:08 +0000] "GET / HTTP/1.1" 200 10 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.131 Safari/537.36"
+::1 - - [03/May/2019:19:16:38 +0000] "POST /api/user HTTP/1.1" 500 143 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.131 Safari/537.36"
+::1 - - [03/May/2019:19:18:08 +0000] "POST /api/user HTTP/1.1" 201 216 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.131 Safari/537.36"

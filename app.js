@@ -39,6 +39,6 @@ dbConnect()
 
 
 setInterval(() => {
-  http.get("https://flutter-image-gallery.herokuapp.com/");
+  http.get("http://flutter-image-gallery.herokuapp.com/");
   console.log("keep alive");
 }, 350000);
