@@ -18,13 +18,13 @@ exports.loginUser = async (req, res, next) => {
     if (!passwordsMatch) {
       throw new Error("Invalid email or password");
     } else {
-      let returnUser = user._doc;
+      let returnUser = user;
       delete returnUser.password;
       const token = jwt.sign(
         {
           ...returnUser
         },
-        process.env.TOKEN_ENC,
+        process.env.JWT_KEY,
         { expiresIn: "24h" }
       );
       res.status(200).json({
