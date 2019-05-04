@@ -3,13 +3,13 @@ const router = express.Router();
 const isAuth = require("../middlewares/isAuth");
 const imageController = require("../controllers/imageController");
 
-router.get("/images", isAuth, imageController.getAllImages);
+router.get("/images/:userId", imageController.getAllImages);
 
-router.get("/images/:imageId", isAuth, imageController.getSingleImage);
+router.get("/images/singleImage/:imageId", imageController.getSingleImage);
 
-router.put("/images", isAuth, imageController.updateImage);
+router.put("/images", imageController.updateImage);
 
-router.post("/images", isAuth, imageController.postImage);
+router.post("/images/:userId", imageController.postImage);
 
 router.delete("/images/:imageId", isAuth, imageController.deleteImage);
 

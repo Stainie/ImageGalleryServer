@@ -36,7 +36,7 @@ exports.getSingleImage = async (req, res, next) => {
 };
 
 exports.updateImage = async (req, res, next) => {
-  const { _id, title, price, description, image_url } = req.body;
+  const { _id, title, image_url } = req.body;
   try {
     const product = await Image.findOne({ _id: _id, creatorId: req.userId });
 
@@ -44,8 +44,6 @@ exports.updateImage = async (req, res, next) => {
       errorHandlers.mainErrorHandler("Not Authorized", 401);
     }
     product.title = title;
-    product.price = price;
-    product.description = description;
     product.image_url = image_url;
     const savedProduct = await product.save();
 
@@ -60,13 +58,11 @@ exports.updateImage = async (req, res, next) => {
 };
 
 exports.postImage = async (req, res, next) => {
-  const { title, price, description, image_url } = req.body;
+  const { title, image_url } = req.body;
 
   try {
     const product = new Image({
       title,
-      price,
-      description,
       image_url,
       creatorId: req.userId
     });

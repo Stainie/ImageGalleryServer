@@ -2,23 +2,27 @@ const mongoose = require("mongoose");
 
 const Schema = mongoose.Schema;
 
-const imageSchema = new Schema(
+const commentSchema = new Schema(
   {
-    title: {
+    text: {
       type: String,
       required: true
     },
-    image_url: {
+    timeWritten: {
       type: String,
       required: true
     },
-    creatorId: {
+    writer: {
+      type: String,
+      required: true
+    },
+    imageId: {
       type: Schema.Types.ObjectId,
       required: true,
-      ref: "User"
+      ref: "Image"
     }
   },
   { timestamps: true }
 );
 
-module.exports = mongoose.model("Image", imageSchema);
+module.exports = mongoose.model("Comment", commentSchema);
