@@ -10,7 +10,7 @@ const {
 exports.getUser = async (req, res, next) => {
 
   try {
-    const user = await User.findOne({ email: req.email });
+    const user = await User.findOne({ email: req.params.email });
     res.status(200).json({
       sucess: true,
       message: "Success",
